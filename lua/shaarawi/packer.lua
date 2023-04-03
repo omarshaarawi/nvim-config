@@ -49,4 +49,15 @@ use {
         {"nvim-treesitter/nvim-treesitter"}
     }
 }
+use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+}
+use({
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	tag = "v<CurrentMajor>.*",
+	-- install jsregexp (optional!:).
+	run = "make install_jsregexp"
+})
 end)
