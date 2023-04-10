@@ -28,7 +28,8 @@ return require('packer').startup(function(use)
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
-            { -- Optional
+            {
+                                         -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
@@ -37,9 +38,9 @@ return require('packer').startup(function(use)
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
+            { 'hrsh7th/nvim-cmp' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' }, -- Required
+            { 'L3MON4D3/LuaSnip' },     -- Required
         }
     }
     use {
@@ -65,14 +66,14 @@ return require('packer').startup(function(use)
         'abecodes/tabout.nvim',
         config = function()
             require('tabout').setup {
-                tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+                tabkey = '<Tab>',             -- key to trigger tabout, set to an empty string to disable
                 backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-                act_as_tab = true, -- shift content if tab out is not possible
-                act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-                default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-                default_shift_tab = '<C-d>', -- reverse shift default action,
-                enable_backwards = true, -- well ...
-                completion = true, -- if the tabkey is used in a completion pum
+                act_as_tab = true,            -- shift content if tab out is not possible
+                act_as_shift_tab = false,     -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+                default_tab = '<C-t>',        -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+                default_shift_tab = '<C-d>',  -- reverse shift default action,
+                enable_backwards = true,      -- well ...
+                completion = true,            -- if the tabkey is used in a completion pum
                 tabouts = {
                     { open = "'", close = "'" },
                     { open = '"', close = '"' },
@@ -86,10 +87,17 @@ return require('packer').startup(function(use)
             }
         end,
         wants = { 'nvim-treesitter' }, -- or require if not used so far
-        after = { 'nvim-cmp' } -- if a completion plugin is using tabs load it before
+        after = { 'nvim-cmp' }         -- if a completion plugin is using tabs load it before
     }
     use "rawnly/gist.nvim"
     use { "akinsho/toggleterm.nvim", tag = '*', config = function()
         require("toggleterm").setup()
     end }
+
+    use 'ray-x/go.nvim'
+    use 'ray-x/guihua.lua' -- recommended if need floating window support
+    use 'neovim/nvim-lspconfig'
+
+    use 'mfussenegger/nvim-dap'
+    use 'leoluz/nvim-dap-go'
 end)
