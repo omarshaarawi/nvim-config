@@ -13,9 +13,14 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use({ 'rose-pine/neovim', as = 'rose-pine' })
+    use({
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            vim.cmd('colorscheme rose-pine')
+        end
+    })
 
-    vim.cmd('colorscheme rose-pine')
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('nvim-lua/plenary.nvim')
@@ -29,7 +34,7 @@ return require('packer').startup(function(use)
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
             {
-                                         -- Optional
+                -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
@@ -100,4 +105,14 @@ return require('packer').startup(function(use)
 
     use 'mfussenegger/nvim-dap'
     use 'leoluz/nvim-dap-go'
+    use {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({})
+        end,
+    }
+    use 'lewis6991/gitsigns.nvim'
+    use 'christoomey/vim-tmux-navigator'
 end)
